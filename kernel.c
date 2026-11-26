@@ -2,6 +2,7 @@
 #include "types.h"
 #include "serial.h"
 #include "string.h"
+#include "memory.h"
 
 #define MAX_INPUT 128
 
@@ -11,7 +12,28 @@ void kmain(void) {
     
     /* Initialize hardware */
     serial_init();
-    
+
+    memory_init();
+
+serial_puts("\nFree safety test:\n");
+
+void *a = kmalloc(256);
+void *b = kmalloc(256);
+
+kfree(a);
+kfree(a);
+
+serial_puts("Double free: survived\n");
+
+kfree((void *)0x12345678);
+
+serial_puts("Invalid free: survived\n");
+
+void *c = kmalloc(256);
+
+serial_puts(c ? "Allocation after invalid frees: SUCCESS\n"
+              : "Allocation after invalid frees: FAILED\n");
+        
     /* Print welcome message */
     serial_puts("\n");
     serial_puts("========================================\n");
