@@ -1,0 +1,24 @@
+# Compiled object and binary files
+*.o
+*.bin
+*.elf
+*.a
+*.so
+
+# Bootable disk images and ISOs
+*.iso
+*.img
+*.vmdk
+*.qcow2
+
+# Common build and dependency directories
+build/
+bin/
+obj/
+*.d
+
+# Editor and OS clutter
+.vscode/
+.idea/
+*.swp
+.DS_Store
